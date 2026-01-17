@@ -1,0 +1,133 @@
+<% layout("layouts/boilerplate") %>
+
+<div class="row">
+  <div class="col-md-8 col-lg-6 offset-md-2">
+    <h1 class="mb-4">Edit Listing</h1>
+
+    <form 
+      action="/listings/<%= listing._id %>?_method=PUT" 
+      method="POST" 
+      class="listing-form needs-validation"
+      novalidate
+    >
+
+      <!-- Title -->
+      <div class="mb-3">
+        <label class="form-label">Title</label>
+        <input
+          type="text"
+          name="listing[title]"
+          class="form-control"
+          value="<%= listing.title %>"
+          required
+        >
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+        <div class="invalid-feedback">
+          Title is required.
+        </div>
+      </div>
+
+      <!-- Description -->
+      <div class="mb-3">
+        <label class="form-label">Description</label>
+        <textarea
+          name="listing[description]"
+          class="form-control"
+          rows="4"
+          required
+        ><%= listing.description %></textarea>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+        <div class="invalid-feedback">
+          Description is required.
+        </div>
+      </div>
+
+      <!-- Image URL -->
+      <div class="mb-3">
+        <label class="form-label">Image URL</label>
+        <input
+          type="url"
+          name="listing[image][url]"
+          class="form-control"
+          value="<%= listing.image?.url %>"
+          required
+        >
+        <div class="valid-feedback">
+          Valid image URL.
+        </div>
+        <div class="invalid-feedback">
+          Please enter a valid image URL.
+        </div>
+      </div>
+
+      <!-- Price -->
+      <div class="mb-3">
+        <label class="form-label">Price (₹)</label>
+        <input
+          type="number"
+          name="listing[price]"
+          class="form-control"
+          value="<%= listing.price %>"
+          min="1"
+          required
+        >
+        <div class="valid-feedback">
+          Price looks good.
+        </div>
+        <div class="invalid-feedback">
+          Price must be greater than 0.
+        </div>
+      </div>
+
+      <!-- Location -->
+      <div class="mb-3">
+        <label class="form-label">Location</label>
+        <input
+          type="text"
+          name="listing[location]"
+          class="form-control"
+          value="<%= listing.location %>"
+          required
+        >
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+        <div class="invalid-feedback">
+          Location is required.
+        </div>
+      </div>
+
+      <!-- Country -->
+      <div class="mb-3">
+        <label class="form-label">Country</label>
+        <input
+          type="text"
+          name="listing[country]"
+          class="form-control"
+          value="<%= listing.country %>"
+          required
+        >
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+        <div class="invalid-feedback">
+          Country is required.
+        </div>
+      </div>
+
+      <!-- Submit -->
+      <button type="submit" class="btn btn-primary">
+        Update Listing
+      </button>
+
+      <a href="/listings/<%= listing._id %>" class="btn btn-link ms-2">
+        Cancel
+      </a>
+
+    </form>
+  </div>
+</div>

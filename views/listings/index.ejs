@@ -1,0 +1,52 @@
+<% layout("layouts/boilerplate") %>
+
+<h1 class="mb-4">Listings</h1>
+
+<% if (allListings.length === 0) { %>
+  <p>No listings found.</p>
+<% } else { %>
+
+  <div class="row g-4">
+    <% allListings.forEach(listing => { %>
+
+      <div class="col-sm-6 col-md-4 col-lg-3">
+        <a href="/listings/<%= listing._id %>" class="card-link">
+
+          <div class="card h-100" style="width: 100%;">
+
+            <% if (listing.image && listing.image.url) { %>
+              <img 
+                src="<%= listing.image.url %>" 
+                class="card-img-top" 
+                alt="listing image"
+                style="height: 200px; object-fit: cover;"
+              >
+              <div class="card-img-overlay"></div>
+            <% } %>
+
+            <div class="card-body">
+              <h5 class="card-title"><%= listing.title %></h5>
+
+              <p class="card-text">
+                <%= listing.description.length > 40 
+                      ? listing.description.substring(0, 40) + "..." 
+                      : listing.description %>
+              </p>
+
+              <p class="fw-bold mb-1">
+                ₹ <%= listing.price.toLocaleString("en-IN") %>
+              </p>
+
+              <p class="text-muted mb-2">
+                <%= listing.location %>, <%= listing.country %>
+              </p>
+            </div>
+
+          </div>
+        </a>
+      </div>
+
+    <% }) %>
+  </div>
+
+<% } %>

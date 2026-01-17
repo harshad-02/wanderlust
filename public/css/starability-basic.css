@@ -1,0 +1,38 @@
+.starability-basic {
+  position: relative;
+  display: inline-flex;
+  flex-direction: row-reverse;
+}
+
+.starability-basic > input {
+  position: absolute;
+  left: -9999px;
+}
+
+/* Star appearance */
+.starability-basic > label {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='%23ddd' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 32px;
+}
+
+/* Hover state */
+.starability-basic > label:hover,
+.starability-basic > label:hover ~ label {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='%23f5c518' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z'/%3E%3C/svg%3E");
+}
+
+/* Checked stars */
+.starability-basic > input:checked + label,
+.starability-basic > input:checked + label ~ label {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='%23f5c518' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z'/%3E%3C/svg%3E");
+}
+
+/* ⭐ KEY FIX — no yellow stars initially */
+.starability-basic > .input-no-rate:checked ~ label {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='%23ddd' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z'/%3E%3C/svg%3E");
+}

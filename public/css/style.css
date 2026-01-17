@@ -1,0 +1,386 @@
+/* ---------------- GLOBAL FONT (Airbnb-like) ---------------- */
+html , body {
+  height:100%;
+  font-family:"Plus Jakarta Sans", sans-serif !important;
+}
+
+/* ---------------- NAVBAR ---------------- */
+.navbar {
+  background-color: #ffffff !important;
+  border-bottom: 1px solid #ebebeb;
+  padding: 0.75rem 1.5rem;
+}
+
+/* Brand */
+.navbar-brand {
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: #ff385c !important; /* Airbnb red */
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.navbar-brand i {
+  font-size: 1.3rem;
+}
+
+/* Nav links */
+.navbar-nav .nav-link {
+  color: #222222;
+  font-weight: 500;
+  margin-right: 0.75rem;
+  padding: 0.4rem 0.75rem;
+  border-radius: 999px;
+  transition: background-color 0.2s ease;
+}
+
+/* Hover effect (Airbnb style pill) */
+.navbar-nav .nav-link:hover {
+  background-color: #f7f7f7;
+  color: #222222;
+}
+
+/* Active link (optional for later) */
+.navbar-nav .nav-link.active {
+  background-color: #f7f7f7;
+  font-weight: 600;
+}
+
+/* Toggler */
+.navbar-toggler {
+  border: none;
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
+}
+
+
+
+/* ---------------- FOOTER (Airbnb Inspired) ---------------- */
+
+.footer {
+  background-color: #f7f7f7;
+  border-top: 1px solid #ebebeb;
+  padding: 1.5rem 1rem;
+  margin-top: 3rem;
+}
+
+.f-info {
+  max-width: 1200px;
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+
+  font-size: 0.9rem;
+  color: #717171;
+}
+
+/* Social icons */
+.f-info-socials {
+  display: flex;
+  gap: 1rem;
+}
+
+.f-info-socials a {
+  color: #717171;
+  font-size: 1.3rem;
+  transition: color 0.2s ease;
+}
+
+.f-info-socials a:hover {
+  color: #ff385c; /* Airbnb red */
+}
+
+/* Company text */
+.f-info-company {
+  text-align: center;
+}
+
+/* Footer links */
+.f-info-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.f-info-links a {
+  color: #717171;
+  text-decoration: none;
+}
+
+.f-info-links a:hover {
+  text-decoration: underline;
+}
+
+/* Desktop layout */
+@media (min-width: 768px) {
+  .f-info {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+
+/* ---------------- LISTING CARDS ---------------- */
+
+.card {
+  border: 1px solid #ebebeb;          /* faint border on all sides */
+  border-radius: 14px;
+  overflow: hidden;
+  background-color: #ffffff;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Hover effect */
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* Image */
+.card-img-top {
+  height: 200px;
+  object-fit: cover;
+}
+
+/* Card body */
+.card-body {
+  padding: 1rem 1.1rem;
+  border-top: 1px solid #f0f0f0;     /* subtle divider */
+}
+
+/* Title */
+.card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #222222;
+  margin-bottom: 0.25rem;
+}
+
+/* Description */
+.card-text {
+  font-size: 0.9rem;
+  color: #717171;
+  margin-bottom: 0.5rem;
+}
+
+/* Price */
+.card .fw-bold {
+  font-size: 0.95rem;
+  color: #222222;
+}
+
+/* Location */
+.card .text-muted {
+  font-size: 0.85rem;
+  color: #717171 !important;
+}
+
+/* Make entire card clickable (used with <a class="card-link">) */
+.card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.card-link:hover {
+  color: inherit;
+}
+
+/* Responsive spacing tweak */
+@media (max-width: 576px) {
+  .card-body {
+    padding: 0.9rem;
+  }
+}
+
+/* Overlay-effect*/
+.card-img-overlay{
+    opacity: 0;
+}
+
+.card-img-overlay:hover{
+    opacity: 0.1;
+    background-color: #ebebeb;
+}
+
+
+/* ---------------- ADD LISTING FORM ---------------- */
+
+.listing-form {
+  background-color: #ffffff;
+  padding: 1.5rem;
+  border-radius: 14px;
+  border: 1px solid #ebebeb;
+}
+
+/* Form labels */
+.listing-form .form-label {
+  font-weight: 500;
+  color: #222222;
+}
+
+/* Inputs */
+.listing-form .form-control {
+  border-radius: 10px;
+  border: 1px solid #dddddd;
+  padding: 0.55rem 0.75rem;
+}
+
+.listing-form .form-control:focus {
+  border-color: #ff385c;
+  box-shadow: 0 0 0 0.15rem rgba(255, 56, 92, 0.25);
+}
+
+/* Primary button (Airbnb style) */
+.listing-form .btn-primary {
+  background-color: #ff385c;
+  border-color: #ff385c;
+  border-radius: 999px;
+  padding: 0.45rem 1.2rem;
+  font-weight: 500;
+}
+
+.listing-form .btn-primary:hover {
+  background-color: #e31c5f;
+  border-color: #e31c5f;
+}
+
+/* Cancel link */
+.listing-form .btn-link {
+  color: #717171;
+  text-decoration: none;
+}
+
+.listing-form .btn-link:hover {
+  text-decoration: underline;
+}
+
+
+/* ---------------- SHOW PAGE ---------------- */
+
+.show-card {
+  border: 1px solid #ebebeb;
+  border-radius: 16px;
+  overflow: hidden;
+  background-color: #ffffff;
+}
+
+/* Large image */
+/* Large image – rounded corners only */
+.show-img {
+  width: 100%;
+  max-height: 420px;
+  object-fit: cover;
+  border-radius: 14px;   /* rounded corners */
+}
+
+
+/* Card body spacing */
+.show-card-body {
+  padding: 1.5rem;
+}
+
+/* Title */
+.show-card .card-title {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #222222;
+}
+
+/* Description */
+.show-card .card-text {
+  font-size: 1rem;
+  color: #484848;
+  line-height: 1.6;
+}
+
+/* Buttons */
+.show-card .btn {
+  border-radius: 999px;
+  padding: 0.45rem 1.2rem;
+  text-decoration: none;
+}
+
+/* Delete button hover */
+.show-card .btn-outline-danger:hover {
+  background-color: #ff385c;
+  border-color: #ff385c;
+}
+
+/* Back link */
+.show-card a {
+  color: #717171;
+}
+
+.show-card a:hover {
+  text-decoration: underline;
+}
+
+
+/* Align show page title with card content */
+.show-page-title {
+  padding-left: 14rem;
+  padding-right: 1.5rem;
+}
+
+
+/* =============Review card ================> */
+.review-card {
+  border-radius: 12px;
+  border: 1px solid #ebebeb;
+  background-color: #ffffff;
+}
+
+.review-card p {
+  font-size: 0.95rem;
+}
+
+
+.owner-name {
+  font-size: 0.95rem;
+  color: #6c757d;
+}
+/* ================= STAR DISPLAY ================= */
+.review-stars {
+  font-size: 1.4rem;
+  color: #f5c518;
+}
+
+.review-stars .star {
+  color: #ddd;
+}
+
+.review-stars .filled {
+  color: #f5c518;
+}
+
+/*====================Airbnb button ================*/
+
+.airbnb-btn {
+  background: linear-gradient(90deg, #ff385c, #e61e4d);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 22px;
+  font-weight: 600;
+  font-size: 16px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.airbnb-btn:hover {
+  background: linear-gradient(90deg, #e61e4d, #d70466);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  color: #fff;
+}
+
+.airbnb-btn:active {
+  transform: scale(0.98);
+}
+

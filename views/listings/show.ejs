@@ -1,0 +1,188 @@
+<% layout("layouts/boilerplate") %>
+
+<div class="row justify-content-center">
+  <h1 class="mb-4 show-page-title"><%= listing.title %></h1>
+
+  <div class="col-md-10 col-lg-8">
+
+    <!-- ================= LISTING CARD ================= -->
+    <div class="show-card card mb-5">
+      <% if (listing.image && listing.image.url) { %>
+        <div class="show-img-wrapper">
+          <img src="<%= listing.image.url %>" class="show-img" alt="Listing Image">
+        </div>
+      <% } %>
+
+      <div class="card-body show-card-body">
+        <p class="card-text mb-3"><%= listing.description %></p>
+        <p class="fw-bold mb-1">₹ <%= listing.price.toLocaleString("en-IN") %></p>
+        <p class="text-muted mb-2"><%= listing.location %>, <%= listing.country %></p>
+
+        <p class="text-muted mb-4">
+          <strong>Owned by:</strong>
+          <%= listing.owner?.username || "Unknown" %>
+        </p>
+
+        <% if (currentUser && listing.owner &&
+          listing.owner._id.toString() === currentUser._id.toString()) { %>
+          <div class="d-flex gap-2 mb-3">
+            <a href="/listings/<%= listing._id %>/edit" class="btn btn-outline-secondary">Edit</a>
+            <form action="/listings/<%= listing._id %>?_method=DELETE" method="POST">
+              <button class="btn btn-outline-danger">Delete</button>
+            </form>
+          </div>
+        <% } %>
+
+        <a href="/listings" class="text-decoration-none">← Back to Listings</a>
+      </div>
+    </div>
+
+    <!-- ================= ADD REVIEW ================= -->
+    <% if (currentUser) { %>
+      <div class="add-review mb-5">
+        <h4 class="mb-3">Add a Review</h4>
+
+        <form
+          action="/listings/<%= listing._id %>/reviews"
+          method="POST"
+          class="needs-validation"
+          novalidate
+        >
+
+          <!-- ⭐ RATING -->
+          <div class="mb-4">
+            <label class="form-label d-block mb-2">Rating</label>
+
+            <fieldset class="starability-basic">
+              <input type="radio" class="input-no-rate" name="review[rating]" value="" checked>
+
+              <input type="radio" id="rate5" name="review[rating]" value="5">
+              <label for="rate5"></label>
+
+              <input type="radio" id="rate4" name="review[rating]" value="4">
+              <label for="rate4"></label>
+
+              <input type="radio" id="rate3" name="review[rating]" value="3">
+              <label for="rate3"></label>
+
+              <input type="radio" id="rate2" name="review[rating]" value="2">
+              <label for="rate2"></label>
+
+              <input type="radio" id="rate1" name="review[rating]" value="1">
+              <label for="rate1"></label>
+            </fieldset>
+
+            <!-- Hidden input for Bootstrap validation -->
+            <input type="number" id="ratingCheck" class="d-none" required>
+
+            <div class="invalid-feedback">
+              Please select a rating.
+            </div>
+          </div>
+
+          <!-- COMMENT -->
+          <div class="mb-3">
+            <label class="form-label">Comment</label>
+            <textarea
+              name="review[comment]"
+              class="form-control"
+              rows="3"
+              required
+            ></textarea>
+            <div class="invalid-feedback">
+              Please write a review.
+            </div>
+          </div>
+
+          <button class="btn airbnb-btn">Submit Review</button>
+        </form>
+      </div>
+    <% } else { %>
+      <p class="text-muted"><a href="/login">Login</a> to add a review.</p>
+    <% } %>
+
+    <!-- ================= REVIEWS ================= -->
+    <div class="reviews-section mb-5">
+      <h3 class="mb-3">Reviews</h3>
+
+      <% if (!listing.reviews || listing.reviews.length === 0) { %>
+        <p class="text-muted">No reviews yet.</p>
+      <% } else { %>
+        <div class="row g-3">
+          <% listing.reviews.forEach(review => { %>
+            <div class="col-md-6">
+              <div class="card h-100 review-card">
+                <div class="card-body">
+
+                  <div class="review-stars mb-2">
+                    <% for (let i = 1; i <= 5; i++) { %>
+                      <span class="star <%= i <= review.rating ? 'filled' : '' %>">
+                        <%= i <= review.rating ? '★' : '☆' %>
+                      </span>
+                    <% } %>
+                  </div>
+
+                  <p class="mb-2"><%= review.comment %></p>
+
+                  <p class="text-muted mb-1">
+                    <small>
+                      Reviewed by <strong><%= review.owner.username %></strong>
+                    </small>
+                  </p>
+
+                  <small class="text-muted">
+                    <%= review.createdAt.toDateString() %>
+                  </small>
+
+                  <% if (currentUser && review.owner &&
+                    review.owner._id.toString() === currentUser._id.toString()) { %>
+                    <form
+                      action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE"
+                      method="POST"
+                      class="mt-3"
+                    >
+                      <button class="btn btn-sm btn-outline-danger">Delete Review</button>
+                    </form>
+                  <% } %>
+
+                </div>
+              </div>
+            </div>
+          <% }) %>
+        </div>
+      <% } %>
+    </div>
+
+  </div>
+</div>
+
+<!-- ⭐ STAR → VALIDATION SYNC -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const stars = document.querySelectorAll('input[name="review[rating]"]');
+  const ratingCheck = document.getElementById("ratingCheck");
+
+  stars.forEach(star => {
+    star.addEventListener("change", () => {
+      ratingCheck.value = star.value;
+      ratingCheck.dispatchEvent(new Event("change"));
+    });
+  });
+});
+</script>
+
+<!-- BOOTSTRAP VALIDATION -->
+<script>
+(() => {
+  'use strict';
+  document.querySelectorAll('.needs-validation').forEach(form => {
+    form.addEventListener('submit', event => {
+      if (!form.checkValidity()) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+      form.classList.add('was-validated');
+    });
+  });
+})();
+</script>

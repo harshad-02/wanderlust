@@ -1,0 +1,106 @@
+<% layout("layouts/boilerplate") %>
+
+
+
+<div class="row">
+  <div class="col-md-8 col-lg-6 offset-md-2">
+    <h1 class="mb-4">Add New Listing</h1>
+
+    <form 
+  action="/listings" 
+  method="POST"
+  enctype="multipart/form-data"
+  class="listing-form needs-validation"
+  novalidate
+>
+
+
+      <!-- Title -->
+      <div class="mb-3">
+        <label class="form-label">Title</label>
+        <input
+          type="text"
+          name="listing[title]"
+          class="form-control"
+          placeholder="Beautiful beach house"
+          required
+        >
+        <div class="valid-feedback">title looks good!</div>
+      </div>
+
+      <!-- Description -->
+      <div class="mb-3">
+        <label class="form-label">Description</label>
+        <textarea
+          name="listing[description]"
+          class="form-control"
+          rows="4"
+          placeholder="Describe your place..."
+          required
+        ></textarea>
+        <div class="valid-feedback">title description good!</div>
+      </div>
+
+      <!-- Image URL -->
+      <div class="mb-3">
+        <label class="form-label">Image URL</label>
+        <input
+          type="file"
+          name="listing[image]"
+          class="form-control"
+          
+          required
+        >
+        <div class="valid-feedback">correct!</div>
+      </div>
+
+      <!-- Price -->
+      <div class="mb-3">
+        <label class="form-label">Price (₹)</label>
+        <input
+        
+          type="number"
+          name="listing[price]"
+          class="form-control"
+          placeholder="2500"
+          required
+        >
+      </div>
+
+      <!-- Location -->
+      <div class="mb-3">
+        <label class="form-label">Location</label>
+        <input
+          type="text"
+          name="listing[location]"
+          class="form-control"
+          placeholder="Goa"
+          required
+        >
+      </div>
+
+      <!-- Country -->
+      <div class="mb-3">
+        <label class="form-label">Country</label>
+        <input
+          type="text"
+          name="listing[country]"
+          class="form-control"
+          placeholder="India"
+          required
+        >
+      </div>
+
+      <!-- Submit -->
+      <button type="submit" class="btn btn-primary">
+        Create Listing
+      </button>
+
+      <a href="/listings" class="btn btn-link ms-2">
+        Cancel
+      </a>
+
+    </form>
+
+  </div>
+</div>
