@@ -77,6 +77,15 @@ app.use("/listings", listings);
 app.use("/listings/:id/reviews", reviewRoutes);
 app.use("/", userRoutes);
 
+
+//===============Temporary=============>
+app.use((req, res, next) => {
+  console.log("➡️ Requested URL:", req.originalUrl);
+  next();
+});
+// ====================================>
+
+  
 /* ---------------- 404 ---------------- */
 app.use((req, res, next) => {
   next(new ExpressError(404, "Page Not Found"));
